@@ -148,3 +148,23 @@ TEST(get_first_n_primes__tests, should_return_first_five_hundreds_primes)
         primes::get_first_n_primes(500)
     );
 }
+
+TEST(get_first_n_primes__tests, should_cache_no_more_than_10240_first_primes)
+{
+    auto max_capacity = 10u * 1024;
+
+    EXPECT_GE(max_capacity, primes::get_first_n_primes_cache_capacity());
+    EXPECT_GE(max_capacity, primes::get_first_n_primes_cache_size());
+
+    // generate max_capacity + 1 first primes
+    EXPECT_EQ(max_capacity + 1, primes::get_first_n_primes(max_capacity + 1).size());
+    // ... cache should not exceed max_capacity
+    EXPECT_GE(max_capacity, primes::get_first_n_primes_cache_capacity());
+    EXPECT_GE(max_capacity, primes::get_first_n_primes_cache_size());
+
+    // generate max_capacity + 2 first primes
+    EXPECT_EQ(max_capacity + 2, primes::get_first_n_primes(max_capacity + 2).size());
+    // ... cache should not exceed max_capacity
+    EXPECT_GE(max_capacity, primes::get_first_n_primes_cache_capacity());
+    EXPECT_GE(max_capacity, primes::get_first_n_primes_cache_size());
+}

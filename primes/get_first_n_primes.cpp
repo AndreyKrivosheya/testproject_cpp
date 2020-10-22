@@ -9,7 +9,7 @@ using namespace std;
 
 namespace primes
 {
-    list<unsigned int> get_first_n_primes(list<unsigned int> alreadyCalculatedPrimes, const unsigned short& N)
+    list<unsigned int> get_first_n_primes(vector<unsigned int> alreadyCalculatedPrimes, const unsigned short& N)
     {
         if(N == 0)
         {
@@ -17,7 +17,8 @@ namespace primes
         }
         else
         {
-            list<unsigned int> primes(alreadyCalculatedPrimes.begin(), next(alreadyCalculatedPrimes.begin(), min(size_t(N), alreadyCalculatedPrimes.size())));
+            list<unsigned int> primes;
+            std::copy(alreadyCalculatedPrimes.begin(), next(alreadyCalculatedPrimes.begin(), min(size_t(N), alreadyCalculatedPrimes.size())), back_inserter(primes));
             for(auto idxN = N - primes.size(); idxN > 0; idxN--)
             {
                 auto possiblePrime = primes.back() + 2;
@@ -46,36 +47,51 @@ namespace primes
         }
     }
 
+    mutex g_alreadyCalculatedPrimeNumbersMutex;
+    vector<unsigned int> g_alreadyCalculatedPrimeNumbers;
+
+    unsigned int get_first_n_primes_cache_capacity()
+    {
+        lock_guard<mutex> alreadyCalculatedPrimeNumbersMutexLock(g_alreadyCalculatedPrimeNumbersMutex);
+        return g_alreadyCalculatedPrimeNumbers.capacity();
+    }
+
+    unsigned int get_first_n_primes_cache_size()
+    {
+        lock_guard<mutex> alreadyCalculatedPrimeNumbersMutexLock(g_alreadyCalculatedPrimeNumbersMutex);
+        return g_alreadyCalculatedPrimeNumbers.size();
+    }
+
     list<unsigned int> get_first_n_primes(const unsigned short& N)
     {
-        static mutex s_alreadyCalculatedPrimeNumbersMutex;
-        static list<unsigned int> s_alreadyCalculatedPrimeNumbers;
-
         // initial initialization already calculated primes list
-        list<unsigned int> alreadyCalculatedPrimeNumbers;
+        vector<unsigned int> alreadyCalculatedPrimeNumbers;
         {
-            lock_guard<mutex> alreadyCalculatedPrimeNumbersMutexLock(s_alreadyCalculatedPrimeNumbersMutex);
+            lock_guard<mutex> alreadyCalculatedPrimeNumbersMutexLock(g_alreadyCalculatedPrimeNumbersMutex);
             {
-                if(s_alreadyCalculatedPrimeNumbers.size() == 0)
+                if(g_alreadyCalculatedPrimeNumbers.size() == 0)
                 {
-                    s_alreadyCalculatedPrimeNumbers = {2, 3, 5, 7, 11, 13};
+                    g_alreadyCalculatedPrimeNumbers.reserve(10 * 1024);
+                    g_alreadyCalculatedPrimeNumbers = {2u, 3u, 5u, 7u, 11u, 13u};
                 }
-                alreadyCalculatedPrimeNumbers = s_alreadyCalculatedPrimeNumbers;
+                alreadyCalculatedPrimeNumbers = g_alreadyCalculatedPrimeNumbers;
             }
         }
         // get first N primes
         auto primes = get_first_n_primes(alreadyCalculatedPrimeNumbers, N);
         // if new primes were generated store them
-        const int alreadyCalculatedPrimeNumbersMax = 10 * 1024;
-        if(alreadyCalculatedPrimeNumbers.size() < alreadyCalculatedPrimeNumbersMax)
+        if(primes.size() > alreadyCalculatedPrimeNumbers.size())
         {
-            if(primes.size() > alreadyCalculatedPrimeNumbers.size())
+            lock_guard<mutex> alreadyCalculatedPrimeNumbersMutexLock(g_alreadyCalculatedPrimeNumbersMutex);
             {
-                lock_guard<mutex> alreadyCalculatedPrimeNumbersMutexLock(s_alreadyCalculatedPrimeNumbersMutex);
+                if(g_alreadyCalculatedPrimeNumbers.size() < g_alreadyCalculatedPrimeNumbers.capacity())
                 {
-                    if(primes.size() > s_alreadyCalculatedPrimeNumbers.size())
+                    if(primes.size() > g_alreadyCalculatedPrimeNumbers.size())
                     {
-                        s_alreadyCalculatedPrimeNumbers = primes;
+                        std::copy(
+                            std::next(primes.begin(), g_alreadyCalculatedPrimeNumbers.size()),
+                            std::prev(primes.end(), primes.size() - min(primes.size(), g_alreadyCalculatedPrimeNumbers.capacity())),
+                            back_inserter(g_alreadyCalculatedPrimeNumbers));
                     }
                 }
             }
