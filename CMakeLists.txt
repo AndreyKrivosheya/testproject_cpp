@@ -35,3 +35,4 @@ enable_testing()
 add_subdirectory(common)
 # per test projects
 add_subdirectory(primes)
+add_subdirectory(bits)
