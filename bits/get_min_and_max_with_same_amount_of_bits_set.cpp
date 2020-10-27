@@ -22,21 +22,16 @@ namespace bits
             }
             else
             {
-                static const vector<unsigned int> indicies { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31};
-                
-                auto lambda_to_count_bits_of_a_number =
-                    [&](unsigned int a, unsigned int b) {
-                        return a + ((number & (1u << b)) ? 1 : 0);
-                    };
-                auto n = accumulate(indicies.begin(), indicies.end(), 0u, lambda_to_count_bits_of_a_number);
-                
-                auto lambda_to_build_min_and_max_numbers =
-                    [&](unsigned int a, unsigned int b) {
-                        return a | (1 << b);
-                    };
-                auto min = accumulate(indicies.begin(), next(indicies.begin(), n), 0u, lambda_to_build_min_and_max_numbers);
-                auto max = accumulate(indicies.rbegin(), next(indicies.rbegin(), n), 0u, lambda_to_build_min_and_max_numbers);
-                
+                auto min = 0u, max = 0u;
+                for(auto numberTemp = number; numberTemp != 0; numberTemp = numberTemp >> 1)
+                {
+                    if((numberTemp & 1u) == 1u)
+                    {
+                        min = (min << 1) | 1;
+                        max = (max >> 1) | 0x80000000;
+                    }
+                }
+
                 return make_pair(min, max);
             }
         }
