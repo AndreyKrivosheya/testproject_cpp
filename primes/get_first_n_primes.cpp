@@ -19,7 +19,7 @@ namespace primes
         {
             list<unsigned int> primes;
             std::copy(alreadyCalculatedPrimes.begin(), next(alreadyCalculatedPrimes.begin(), min(size_t(N), alreadyCalculatedPrimes.size())), back_inserter(primes));
-            for(auto idxN = N - primes.size(); idxN > 0; idxN--)
+            for(auto leftToFindPrimes = N - primes.size(); leftToFindPrimes > 0; leftToFindPrimes--)
             {
                 auto possiblePrime = primes.back() + 2;
                 while(true)
