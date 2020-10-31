@@ -2,7 +2,7 @@
 
 #include <gtest\gtest.h>
 
-#include "..\..\common\vector.hpp"
+#include "..\..\..\..\common\vector.hpp"
 
 TEST(vector__to_vector__tests, should_return_the_same_vector)
 {

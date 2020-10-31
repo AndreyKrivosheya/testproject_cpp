@@ -4,8 +4,8 @@ include(GoogleTest)
 set(This common_tests)
 
 set(Sources
-    list__to_vector__tests.cpp
-    vector__to_vector__tests.cpp
+    list__of__int/to_vector/tests__same_items.cpp
+    vector__of__int/to_vector/tests__same.cpp
 )
 
 add_executable(${This} ${Sources})

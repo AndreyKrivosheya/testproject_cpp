@@ -4,7 +4,8 @@ include(GoogleTest)
 set(This primes_tests)
 
 set(Sources
-    get_first_n_primes__tests.cpp
+    get_first_n_primes/tests__caching.cpp
+    get_first_n_primes/tests__first_n_primes.cpp
 )
 
 add_executable(${This} ${Sources})
