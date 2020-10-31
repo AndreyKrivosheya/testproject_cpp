@@ -34,5 +34,6 @@ enable_testing()
 # shared libraries
 add_subdirectory(common)
 # per test projects
-add_subdirectory(primes)
 add_subdirectory(bits)
+add_subdirectory(lists)
+add_subdirectory(primes)
