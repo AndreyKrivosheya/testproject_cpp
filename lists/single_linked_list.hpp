@@ -48,8 +48,7 @@ namespace lists
             }
             else
             {
-                tail->next = new single_linked_list_node<T>(payload);
-                tail = tail->next;
+                tail = tail->next = new single_linked_list_node<T>(payload);
             }
         }
 
@@ -72,7 +71,7 @@ namespace lists
 
         private:
 
-        single_linked_list_node<T>* head;
-        single_linked_list_node<T>* tail;
+        struct single_linked_list_node<T>* head;
+        struct single_linked_list_node<T>* tail;
     };
 }

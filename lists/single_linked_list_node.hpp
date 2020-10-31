@@ -9,7 +9,7 @@ namespace lists
         {
         }
 
-        single_linked_list_node<T>* next;
+        struct single_linked_list_node<T>* next;
         T payload;
 
         private:
