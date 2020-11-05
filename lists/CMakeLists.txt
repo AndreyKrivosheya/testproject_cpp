@@ -5,11 +5,12 @@ set(This lists)
 enable_testing()
 
 set(Headers
-    single_linked_list.hpp
     single_linked_list_node.hpp
+    single_linked_list.hpp
 )
 set(Sources
-    empty.cpp
+    single_linked_list_node.cpp
+    single_linked_list.cpp
 )
 
 add_library(${This} STATIC ${Sources} ${Headerss})

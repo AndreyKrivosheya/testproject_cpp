@@ -73,5 +73,7 @@ namespace lists
 
         struct single_linked_list_node<T>* head;
         struct single_linked_list_node<T>* tail;
+
+        single_linked_list(const single_linked_list<T>& another);
     };
 }

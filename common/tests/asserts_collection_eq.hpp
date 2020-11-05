@@ -1,3 +1,4 @@
+#pragma once
 #include "..\..\common\list.hpp"
 #include "..\..\common\vector.hpp"
 
