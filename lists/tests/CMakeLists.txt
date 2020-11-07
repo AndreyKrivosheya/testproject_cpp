@@ -18,9 +18,9 @@ set(Sources
 
 add_executable(${This} ${Sources})
 target_link_libraries(${This} PUBLIC "-static"
+    gmock
     gtest_main
 
-    common
     lists
 )
 

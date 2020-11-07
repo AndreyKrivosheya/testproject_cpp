@@ -2,114 +2,116 @@
 #include <vector>
 
 #include <gtest\gtest.h>
+#include <gmock\gmock.h>
 
-#include "..\..\..\common\tests\asserts_collection_eq.hpp"
 #include "..\..\get_first_n_primes.hpp"
 
-namespace tests__get_first_n_primes {
-    #define ASSERT_PRIMES_LISTS_ARE_SAME(expectedRaw, actualRaw) ASSERT_VECTORS_OR_LISTS_ARE_SAME(expectedRaw, actualRaw)
+using ::testing::ElementsAreArray;
+using ::testing::IsEmpty;
 
+namespace tests__get_first_n_primes {
     TEST(tests__get_first_n_primes, should_return_zero_primes)
     {
-        ASSERT_PRIMES_LISTS_ARE_SAME(
-            vector<unsigned int>({}),
-            primes::get_first_n_primes(0)
+        ASSERT_THAT(
+            primes::get_first_n_primes(0),
+            IsEmpty()
         );
     }
 
     TEST(get_first_n_primes_tests, should_return_first_prime)
     {
-        ASSERT_PRIMES_LISTS_ARE_SAME(
-            vector<unsigned int>({2}),
-            primes::get_first_n_primes(1)
+        ASSERT_THAT(
+            primes::get_first_n_primes(1),
+            ElementsAreArray({2})
         );
     }
 
     TEST(tests__get_first_n_primes, should_return_first_two_primes)
     {
-        ASSERT_PRIMES_LISTS_ARE_SAME(
-            vector<unsigned int>({2, 3}),
-            primes::get_first_n_primes(2)
+        ASSERT_THAT(
+            primes::get_first_n_primes(2),
+            ElementsAreArray({2, 3})
         );
     }
 
     TEST(tests__get_first_n_primes, should_return_first_three_primes)
     {
-        ASSERT_PRIMES_LISTS_ARE_SAME(
-            vector<unsigned int>({2, 3, 5}),
-            primes::get_first_n_primes(3)
+        ASSERT_THAT(
+            primes::get_first_n_primes(3),
+            ElementsAreArray({2, 3, 5})
         );
     }
 
     TEST(tests__get_first_n_primes, should_return_first_four_primes)
     {
-        ASSERT_PRIMES_LISTS_ARE_SAME(
-            vector<unsigned int>({2, 3, 5, 7}),
-            primes::get_first_n_primes(4)
+        ASSERT_THAT(
+            primes::get_first_n_primes(4),
+            ElementsAreArray({2, 3, 5, 7})
         );
     }
 
     TEST(get_first_n_primes_tests, should_return_first_five_primes)
     {
-        ASSERT_PRIMES_LISTS_ARE_SAME(
-            vector<unsigned int>({2, 3, 5, 7, 11}),
-            primes::get_first_n_primes(5)
+        ASSERT_THAT(
+            primes::get_first_n_primes(5),
+            ElementsAreArray({2, 3, 5, 7, 11})
         );
     }
 
     TEST(get_first_n_primes_tests, should_return_first_six_primes)
     {
-        ASSERT_PRIMES_LISTS_ARE_SAME(
-            vector<unsigned int>({2, 3, 5, 7, 11, 13}),
-            primes::get_first_n_primes(6)
+        ASSERT_THAT(
+            primes::get_first_n_primes(6),
+            ElementsAreArray({2, 3, 5, 7, 11, 13})
         );
     }
 
     TEST(tests__get_first_n_primes, should_return_first_seven_primes)
     {
-        ASSERT_PRIMES_LISTS_ARE_SAME(
-            vector<unsigned int>({2, 3, 5, 7, 11, 13, 17}),
-            primes::get_first_n_primes(7)
+        ASSERT_THAT(
+            primes::get_first_n_primes(7),
+            ElementsAreArray({2, 3, 5, 7, 11, 13, 17})
         );
     }
 
     TEST(tests__get_first_n_primes, should_return_first_eight_primes)
     {
-        ASSERT_PRIMES_LISTS_ARE_SAME(
-            vector<unsigned int>({2, 3, 5, 7, 11, 13, 17, 19}),
-            primes::get_first_n_primes(8)
+        ASSERT_THAT(
+            primes::get_first_n_primes(8),
+            ElementsAreArray({2, 3, 5, 7, 11, 13, 17, 19})
         );
     }
 
     TEST(get_first_n_primes_tests, should_return_first_nine_primes)
     {
-        ASSERT_PRIMES_LISTS_ARE_SAME(
-            vector<unsigned int>({2, 3, 5, 7, 11, 13, 17, 19, 23}),
-            primes::get_first_n_primes(9)
+        ASSERT_THAT(
+            primes::get_first_n_primes(9),
+            ElementsAreArray({2, 3, 5, 7, 11, 13, 17, 19, 23})
         );
     }
 
     TEST(tests__get_first_n_primes, should_return_first_ten_primes)
     {
-        ASSERT_PRIMES_LISTS_ARE_SAME(
-            vector<unsigned int>({2, 3, 5, 7, 11, 13, 17, 19, 23, 29}),
-            primes::get_first_n_primes(10)
+        ASSERT_THAT(
+            primes::get_first_n_primes(10),
+            ElementsAreArray({2, 3, 5, 7, 11, 13, 17, 19, 23, 29})
         );
     }
 
     TEST(tests__get_first_n_primes, should_return_first_eleven_primes)
     {
-        ASSERT_PRIMES_LISTS_ARE_SAME(
-            vector<unsigned int>({2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31}),
-            primes::get_first_n_primes(11)
+        ASSERT_THAT(
+            primes::get_first_n_primes(11),
+            ElementsAreArray({2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31})
         );
     }
 
     TEST(tests__get_first_n_primes, should_return_first_five_hundreds_primes)
     {
         // list of primes is from here https://ru.wikipedia.org/wiki/%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA_%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%8B%D1%85_%D1%87%D0%B8%D1%81%D0%B5%D0%BB
-        ASSERT_PRIMES_LISTS_ARE_SAME(
-            vector<unsigned int>({
+        ASSERT_THAT(
+            primes::get_first_n_primes(500),
+            ElementsAreArray({
                 2,	    3,	    5,	    7,	    11,	    13,	    17,	    19,     23,     29,	    31,	    37,	    41,	    43,	    47,
                 53,	    59,	    61,	    67,	    71,     73,	    79,	    83,	    89,	    97,	    101,	103,	107,	109,    113,
                 127,    131,    137,	139,	149,	151,	157,	163,	167,	173,    179,	181,	191,	193,	197,
@@ -144,8 +146,7 @@ namespace tests__get_first_n_primes {
                 3313,	3319,	3323,	3329,	3331,	3343,	3347,	3359,	3361,	3371,	3373,	3389,	3391,	3407,	3413,
                 3433,	3449,	3457,	3461,	3463,	3467,	3469,	3491,	3499,	3511,	3517,	3527,	3529,	3533,	3539,
                 3541,	3547,	3557,	3559,	3571
-            }),
-            primes::get_first_n_primes(500)
+            })
         );
     }
 }

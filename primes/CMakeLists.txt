@@ -13,7 +13,6 @@ set(Sources
 
 add_library(${This} STATIC ${Sources} ${Headerss})
 target_link_libraries(${This} PUBLIC
-    common
 )
 
 add_subdirectory(tests)

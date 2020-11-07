@@ -32,7 +32,6 @@ add_subdirectory("${CMAKE_BINARY_DIR}/googletest/src" "${CMAKE_BINARY_DIR}/googl
 enable_testing()
 
 # shared libraries
-add_subdirectory(common)
 # per test projects
 add_subdirectory(bits)
 add_subdirectory(lists)

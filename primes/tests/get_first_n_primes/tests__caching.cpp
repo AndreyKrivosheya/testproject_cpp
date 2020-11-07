@@ -3,7 +3,6 @@
 
 #include <gtest\gtest.h>
 
-#include "..\..\..\common\tests\asserts_collection_eq.hpp"
 #include "..\..\get_first_n_primes.hpp"
 
 namespace tests__get_first_n_primes {
