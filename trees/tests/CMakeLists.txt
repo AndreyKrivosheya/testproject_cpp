@@ -9,6 +9,7 @@ set(Headers
 )
 
 set(Sources
+    tree__of__string/find_all_longest_pathes_from_root_to_leaves_recursively/tests__should.cpp
     tree__of__string/find_all_longest_pathes_from_root_to_leaves/tests__should.cpp
 )
 
