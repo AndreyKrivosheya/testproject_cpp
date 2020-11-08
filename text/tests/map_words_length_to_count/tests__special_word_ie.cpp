@@ -30,9 +30,9 @@ namespace tests__map_words_length_to_count {
     TEST(tests__map_words_length_to_count, should_return_map_when_text_is_only_one_special_word_ie_with_space_between)
     {
         ASSERT_THAT(
-            text::map_words_length_to_count(std::string("i.  e.")),
+            text::map_words_length_to_count(std::string("i. e.")),
             ElementsAre(
-                Pair(6, 1)
+                Pair(5, 1)
             )
         );
     }
@@ -42,8 +42,7 @@ namespace tests__map_words_length_to_count {
         ASSERT_THAT(
             text::map_words_length_to_count(std::string("i.i.  e.")),
             ElementsAre(
-                Pair(1, 1),
-                Pair(6, 1)
+                Pair(1, 3)
             )
         );
     }
@@ -53,8 +52,7 @@ namespace tests__map_words_length_to_count {
         ASSERT_THAT(
             text::map_words_length_to_count(std::string("i.  e.i.")),
             ElementsAre(
-                Pair(1, 1),
-                Pair(6, 1)
+                Pair(1, 3)
             )
         );
     }
@@ -64,8 +62,7 @@ namespace tests__map_words_length_to_count {
         ASSERT_THAT(
             text::map_words_length_to_count(std::string("e.i.  e.")),
             ElementsAre(
-                Pair(1, 1),
-                Pair(6, 1)
+                Pair(1, 3)
             )
         );
     }
@@ -75,8 +72,7 @@ namespace tests__map_words_length_to_count {
         ASSERT_THAT(
             text::map_words_length_to_count(std::string("i.  e.e.")),
             ElementsAre(
-                Pair(1, 1),
-                Pair(6, 1)
+                Pair(1, 3)
             )
         );
     }
@@ -84,10 +80,10 @@ namespace tests__map_words_length_to_count {
     TEST(tests__map_words_length_to_count, should_return_map_when_text_is_only_one_special_word_ie_special_case_05)
     {
         ASSERT_THAT(
-            text::map_words_length_to_count(std::string("i.  i.  e.  e.")),
+            text::map_words_length_to_count(std::string("i.  i. e.  e.")),
             ElementsAre(
                 Pair(1, 2),
-                Pair(6, 1)
+                Pair(5, 1)
             )
         );
     }

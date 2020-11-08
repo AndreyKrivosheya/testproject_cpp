@@ -7,7 +7,7 @@ namespace text {
     {
         map<unsigned int, unsigned int> words_length_to_count;
 
-        regex words_boundary_regex("(i.\\s*?e.?)|(\\b[^\\s]+?(-[^\\s]+?)*\\b)|(\\b[^\\s]+?\\b)");
+        regex words_boundary_regex("(i. ?e.?)|(\\b[^\\s]+?(-[^\\s]+?)*\\b)|(\\b[^\\s]+?\\b)");
         auto words_boundary_regex_begin = std::sregex_iterator(text.begin(), text.end(), words_boundary_regex);
         auto words_boundary_regex_end = std::sregex_iterator();
  
