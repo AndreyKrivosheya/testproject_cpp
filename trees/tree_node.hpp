@@ -7,7 +7,7 @@ namespace trees
     struct tree_node
     {
         tree_node(const T& payload)
-            : left(NULL), right(NULL), payload(payload)
+            : left(nullptr), right(nullptr), payload(payload)
         {
         }
         tree_node(const T& payload, struct tree_node<T>* left, struct tree_node<T>* right)

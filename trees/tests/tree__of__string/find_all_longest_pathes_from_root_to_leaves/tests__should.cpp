@@ -45,7 +45,7 @@ namespace tests__tree__of__string__find_all_longest_pathes_from_root_to_leaves {
         auto sut = tree(
             new tree_node("R",
                 new tree_node("l"),
-                NULL
+                nullptr
             )
         );
         auto longest_pathes_nodes = sut.find_all_longest_pathes_from_root_to_leaves();
@@ -63,7 +63,7 @@ namespace tests__tree__of__string__find_all_longest_pathes_from_root_to_leaves {
     {
         auto sut = tree(
             new tree_node("R",
-                NULL,
+                nullptr,
                 new tree_node("r")
             )
         );
@@ -105,7 +105,7 @@ namespace tests__tree__of__string__find_all_longest_pathes_from_root_to_leaves {
                 new tree_node("l",
                     new tree_node("ll"),
                     new tree_node("lr",
-                        NULL,
+                        nullptr,
                         new tree_node("lrr")
                     )
                 ),
@@ -130,15 +130,15 @@ namespace tests__tree__of__string__find_all_longest_pathes_from_root_to_leaves {
                 new tree_node("l",
                     new tree_node("ll"),
                     new tree_node("lr",
-                        NULL,
+                        nullptr,
                         new tree_node("lrr")
                     )
                 ),
                 new tree_node("r",
-                    NULL,
+                    nullptr,
                     new tree_node("rr",
                         new tree_node("rrl"),
-                        NULL
+                        nullptr
                     )
                 )
             )
@@ -162,12 +162,12 @@ namespace tests__tree__of__string__find_all_longest_pathes_from_root_to_leaves {
                 new tree_node("l",
                     new tree_node("ll"),
                     new tree_node("lr",
-                        NULL,
+                        nullptr,
                         new tree_node("lrr")
                     )
                 ),
                 new tree_node("r",
-                    NULL,
+                    nullptr,
                     new tree_node("rr",
                         new tree_node("rrl"),
                         new tree_node("rrr")
@@ -196,14 +196,14 @@ namespace tests__tree__of__string__find_all_longest_pathes_from_root_to_leaves {
                 new tree_node("l",
                     new tree_node("ll",
                         new tree_node("lll"),
-                        NULL
+                        nullptr
                     ),
-                    NULL
+                    nullptr
                 ),
                 new tree_node("r",
-                    NULL,
+                    nullptr,
                     new tree_node("rr",
-                        NULL,
+                        nullptr,
                         new tree_node("rrr")
                     )
                 )
