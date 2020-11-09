@@ -69,6 +69,22 @@ namespace lists
             }
         }
 
+        void reverse()
+        {
+            // and the last will become first
+            std::swap(tail, head);
+
+            struct single_linked_list_node<T>* prev = nullptr;
+            auto curr = tail/*former head*/;
+            while(nullptr != curr)
+            {
+                auto temp = curr->next;
+                curr->next = prev;
+                prev = curr;
+                curr = temp;
+            }
+        }
+
         private:
 
         struct single_linked_list_node<T>* head;
